@@ -32,6 +32,6 @@ The file "[SP500_GridSearchProposedModels.py](https://github.com/kaikerochaalves
 
 The file "[SP500_Simulations.py](https://github.com/kaikerochaalves/NTSK/blob/9eff3b4312ed6eb37c8294ca75801d5ba9fbefb3/SP500_Simulations.py)" runs the simulations for S&P500 time series and returns the results considering the given hyperparameters.
 
-The file "TAIEX_GridSearchProposedModels.py" (https://github.com/kaikerochaalves/NTSK/blob/9eff3b4312ed6eb37c8294ca75801d5ba9fbefb3/TAIEX_GridSearchProposedModels.py) runs the Grid Search for the TAIEX dataset and returns the results for the best simulations.
+The file "[TAIEX_GridSearchProposedModels.py](https://github.com/kaikerochaalves/NTSK/blob/9eff3b4312ed6eb37c8294ca75801d5ba9fbefb3/TAIEX_GridSearchProposedModels.py)" runs the Grid Search for the TAIEX dataset and returns the results for the best simulations.
 
 The file "[TAIEX_Simulations.py](https://github.com/kaikerochaalves/NTSK/blob/9eff3b4312ed6eb37c8294ca75801d5ba9fbefb3/TAIEX_Simulations.py)" runs the simulations for TAIEX time series and returns the results considering the given hyperparameters.
