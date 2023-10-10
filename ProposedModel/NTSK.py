@@ -74,8 +74,7 @@ class NTSK:
         if empty != 0:
             self.parameters = self.parameters.drop(empty)
         for k in range(1, X.shape[0]):
-            if k == 190:
-                sdf=0
+
             # Prepare the k-th input vector
             x = X[k,].reshape((1,-1)).T
             # Compute xe
