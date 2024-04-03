@@ -18,7 +18,7 @@ from sklearn.preprocessing import MinMaxScaler
 
 # Including to the path another fold
 import sys
-sys.path.append(r'ProposedModel')
+sys.path.append(r'ProposedModels')
 
 # Import models
 from NTSK import NTSK
@@ -74,8 +74,8 @@ X_test = scaler.transform(X_test)
 Model = "NTSK-RLS"
 
 # Set hyperparameters range
-n_clusters = 10
-lambda1 = 0.95
+n_clusters = 6
+lambda1 = 0.96
 RLS_option = 1
 
 
@@ -111,6 +111,17 @@ plt.xlabel('Samples')
 plt.legend(loc='upper left')
 plt.savefig(f'Graphics/{Model}_{Serie}.eps', format='eps', dpi=1200)
 plt.show()
+
+# Show the rules
+
+print(f"\n\nRules for {Model}:\n")
+
+for i in model.parameters.index:
+    rule = f'{i+1}'
+    for j in range(model.parameters.loc[i,'Center'].shape[0]):
+        rule += f" & {model.parameters.loc[i,'Center'][j,0]:.2f} $\pm$ {model.parameters.loc[i,'sigma'][j,0]:.2f}"
+    rule += f" & ({model.parameters.loc[i,'tangent'][0]:.2f},{model.parameters.loc[i,'tangent'][1]:.2f})"
+    print(rule)
 
 # -----------------------------------------------------------------------------
 # NTSK-wRLS
@@ -155,3 +166,14 @@ plt.xlabel('Samples')
 plt.legend(loc='upper left')
 plt.savefig(f'Graphics/{Model}_{Serie}.eps', format='eps', dpi=1200)
 plt.show()
+
+# Show the rules
+
+print(f"\n\nRules for {Model}:\n")
+
+for i in model.parameters.index:
+    rule = f'{i+1}'
+    for j in range(model.parameters.loc[i,'Center'].shape[0]):
+        rule += f" & {model.parameters.loc[i,'Center'][j,0]:.2f} $\pm$ {model.parameters.loc[i,'sigma'][j,0]:.2f}"
+    rule += f" & ({model.parameters.loc[i,'tangent'][0]:.2f},{model.parameters.loc[i,'tangent'][1]:.2f})"
+    print(rule)

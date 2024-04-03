@@ -18,7 +18,7 @@ from sklearn.preprocessing import MinMaxScaler
 
 # Including to the path another fold
 import sys
-sys.path.append(r'ProposedModel')
+sys.path.append(r'ProposedModels')
 
 # Import models
 from NTSK import NTSK
@@ -74,7 +74,7 @@ X_test = scaler.transform(X_test)
 Model = "NTSK-RLS"
 
 # Set hyperparameters range
-n_clusters = 19
+n_clusters = 6
 lambda1 = 0.99
 RLS_option = 1
 
@@ -119,7 +119,7 @@ plt.show()
 Model = "NTSK-wRLS"
 
 # Set hyperparameters range
-n_clusters = 4
+n_clusters = 7
 RLS_option = 2
 
 

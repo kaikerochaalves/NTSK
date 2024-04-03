@@ -86,8 +86,8 @@ plt.show()
 Model = "NTSK-RLS"
 
 # Set hyperparameters range
-n_clusters = 1
-lambda1 = 0.99
+n_clusters = 6
+lambda1 = 1
 RLS_option = 1
 
 

@@ -19,7 +19,7 @@ from sklearn.preprocessing import MinMaxScaler
 
 # Including to the path another fold
 import sys
-sys.path.append(r'ProposedModel')
+sys.path.append(r'ProposedModels')
 
 # Import model
 from NTSK import NTSK 
@@ -106,8 +106,8 @@ plt.show()
 Model = "NTSK-RLS"
 
 # Set hyperparameters range
-n_clusters = 7
-lambda1 = 0.95
+n_clusters = 6
+lambda1 = 0.93
 RLS_option = 1
 
 
