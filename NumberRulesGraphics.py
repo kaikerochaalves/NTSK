@@ -19,7 +19,7 @@ from sklearn.preprocessing import MinMaxScaler
 
 # Including to the path another fold
 import sys
-sys.path.append(r'ProposedModels')
+sys.path.append(r'ProposedModel')
 
 # Import models
 from NTSK import NTSK
@@ -76,16 +76,16 @@ X_test = scaler.transform(X_test)
 Model = "NTSK-wRLS"
 
 # Set hyperparameters range
-l_n_clusters = range(1,30)
-RLS_option = 2
+l_rules = range(1,30)
+adaptive_filter = "wRLS"
 
 simul = 0
 ruleswRLS1 = np.array([])
 rmsewRLS1 = np.array([])
-for n_clusters in l_n_clusters:
+for rules in l_rules:
         
     # Initialize the model
-    model = NTSK(n_clusters = n_clusters, RLS_option = RLS_option)
+    model = NTSK(rules = rules, adaptive_filter = adaptive_filter)
     # Train the model
     OutputTraining = model.fit(X_train, y_train)
     # Test the model
@@ -100,7 +100,7 @@ for n_clusters in l_n_clusters:
     # Compute the Mean Absolute Error
     MAE = mean_absolute_error(y_test, y_pred1)
     # Compute the number of final rules
-    Rules = n_clusters
+    Rules = rules
         
     simul = simul + 1
     #print(f'Simulação: {simul}')
@@ -169,16 +169,16 @@ X_test = scaler.transform(X_test)
 Model = "NTSK-wRLS"
 
 # Set hyperparameters range
-l_n_clusters = range(1,30)
-RLS_option = 2
+l_rules = range(1,30)
+adaptive_filter = "wRLS"
 
 simul = 0
 ruleswRLS2 = np.array([])
 rmsewRLS2 = np.array([])
-for n_clusters in l_n_clusters:
+for rules in l_rules:
         
     # Initialize the model
-    model = NTSK(n_clusters = n_clusters, RLS_option = RLS_option)
+    model = NTSK(rules = rules, adaptive_filter = adaptive_filter)
     # Train the model
     OutputTraining = model.fit(X_train, y_train)
     # Test the model
@@ -193,7 +193,7 @@ for n_clusters in l_n_clusters:
     # Compute the Mean Absolute Error
     MAE = mean_absolute_error(y_test, y_pred1)
     # Compute the number of final rules
-    Rules = n_clusters
+    Rules = rules
         
     simul = simul + 1
     #print(f'Simulação: {simul}')
@@ -264,16 +264,16 @@ X_test = scaler.transform(X_test)
 Model = "NTSK-wRLS"
 
 # Set hyperparameters range
-l_n_clusters = range(1,30)
-RLS_option = 2
+l_rules = range(1,30)
+adaptive_filter = "wRLS"
 
 simul = 0
 ruleswRLS3 = np.array([])
 rmsewRLS3 = np.array([])
-for n_clusters in l_n_clusters:
+for rules in l_rules:
         
     # Initialize the model
-    model = NTSK(n_clusters = n_clusters, RLS_option = RLS_option)
+    model = NTSK(rules = rules, adaptive_filter = adaptive_filter)
     # Train the model
     OutputTraining = model.fit(X_train, y_train)
     # Test the model
@@ -288,7 +288,7 @@ for n_clusters in l_n_clusters:
     # Compute the Mean Absolute Error
     MAE = mean_absolute_error(y_test, y_pred1)
     # Compute the number of final rules
-    Rules = n_clusters
+    Rules = rules
         
     simul = simul + 1
     #print(f'Simulação: {simul}')

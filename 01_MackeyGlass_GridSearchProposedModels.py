@@ -20,7 +20,7 @@ from sklearn.preprocessing import MinMaxScaler
 
 # Including to the path another fold
 import sys
-sys.path.append(r'ProposedModels')
+sys.path.append(r'ProposedModel')
 
 # Import models
 from NTSK import NTSK
@@ -98,18 +98,18 @@ plt.show()
 Model = "NTSK-RLS"
 
 # Set hyperparameters range
-n_clusters = 1
+rules = 1
 l_lambda = [0.2, 0.4, 0.6, 0.8, 0.9, 0.91, 0.92, 0.93, 0.94, 0.95, 0.96, 0.97, 0.98, 0.99, 1.]
-RLS_option = 1
+adaptive_filter = "RLS"
 
 simul = 0
 # Creating the DataFrame to store results
-columns = ['Model', 'n_clusters', 'lambda1', 'RLS_option', 'RMSE', 'NDEI', 'MAE', 'Rules']
+columns = ['Model', 'rules', 'lambda1', 'adaptive_filter', 'RMSE', 'NDEI', 'MAE', 'Rules']
 result = pd.DataFrame(columns = columns)
 for lambda1 in l_lambda:
     
     # Initialize the model
-    model = NTSK(n_clusters = n_clusters, lambda1 = lambda1, RLS_option = RLS_option)
+    model = NTSK(rules = rules, lambda1 = lambda1, adaptive_filter = adaptive_filter)
     # Train the model
     OutputTraining = model.fit(X_train, y_train)
     # Test the model
@@ -124,13 +124,13 @@ for lambda1 in l_lambda:
     # Compute the Mean Absolute Error
     MAE = mean_absolute_error(y_test, y_pred1)
     # Compute the number of final rules
-    Rules = n_clusters
+    Rules = rules
         
     simul = simul + 1
     #print(f'Simulação: {simul}')
     print('.', end='', flush=True)
     
-    NewRow = pd.DataFrame([[Model, n_clusters, lambda1, RLS_option, RMSE, NDEI, MAE, Rules]], columns = columns)
+    NewRow = pd.DataFrame([[Model, rules, lambda1, adaptive_filter, RMSE, NDEI, MAE, Rules]], columns = columns)
     if result.shape[0] == 0:
         result = NewRow
     else:  
@@ -163,7 +163,7 @@ print("NDEI:", NDEI)
 MAE = mean_absolute_error(y_test, y_pred1)
 print("MAE:", MAE)
 # Compute the number of final rules
-Rules = hp1.n_clusters
+Rules = hp1.rules
 
 
 NTSK_RLS = f'{Model} & {RMSE:.5f} & {NDEI:.5f} & {MAE:.5f} & {Rules}'
@@ -192,17 +192,17 @@ plt.show()
 Model = "NTSK-wRLS"
 
 # Set hyperparameters range
-l_n_clusters = range(1,20,3)
-RLS_option = 2
+l_rules = range(1,20,3)
+adaptive_filter = "wRLS"
 
 simul = 0
 # Creating the DataFrame to store results
-columns = ['Model', 'n_clusters', 'RLS_option', 'RMSE', 'NDEI', 'MAE', 'Rules']
+columns = ['Model', 'rules', 'adaptive_filter', 'RMSE', 'NDEI', 'MAE', 'Rules']
 result = pd.DataFrame(columns = columns)
-for n_clusters in l_n_clusters:
+for rules in l_rules:
         
     # Initialize the model
-    model = NTSK(n_clusters = n_clusters, RLS_option = RLS_option)
+    model = NTSK(rules = rules, adaptive_filter = adaptive_filter)
     # Train the model
     OutputTraining = model.fit(X_train, y_train)
     # Test the model
@@ -217,13 +217,13 @@ for n_clusters in l_n_clusters:
     # Compute the Mean Absolute Error
     MAE = mean_absolute_error(y_test, y_pred2)
     # Compute the number of final rules
-    Rules = n_clusters
+    Rules = rules
         
     simul = simul + 1
     #print(f'Simulação: {simul}')
     print('.', end='', flush=True)
     
-    NewRow = pd.DataFrame([[Model, n_clusters, RLS_option, RMSE, NDEI, MAE, Rules]], columns = columns)
+    NewRow = pd.DataFrame([[Model, rules, adaptive_filter, RMSE, NDEI, MAE, Rules]], columns = columns)
     if result.shape[0] == 0:
         result = NewRow
     else:  
@@ -256,7 +256,7 @@ print("NDEI:", NDEI)
 MAE = mean_absolute_error(y_test, y_pred2)
 print("MAE:", MAE)
 # Compute the number of final rules
-Rules = hp2.n_clusters
+Rules = hp2.rules
 
 
 NTSK_wRLS = f'{Model} & {RMSE:.5f} & {NDEI:.5f} & {MAE:.5f} & {Rules}'

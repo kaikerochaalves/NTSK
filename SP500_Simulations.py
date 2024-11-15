@@ -18,7 +18,7 @@ from sklearn.preprocessing import MinMaxScaler
 
 # Including to the path another fold
 import sys
-sys.path.append(r'ProposedModels')
+sys.path.append(r'ProposedModel')
 
 # Import models
 from NTSK import NTSK
@@ -74,13 +74,13 @@ X_test = scaler.transform(X_test)
 Model = "NTSK-RLS"
 
 # Set hyperparameters range
-n_clusters = 6
+rules = 6
 lambda1 = 0.96
-RLS_option = 1
+adaptive_filter = "RLS"
 
 
 # Initialize the model
-model = NTSK(n_clusters = n_clusters, lambda1 = lambda1, RLS_option = RLS_option)
+model = NTSK(rules = rules, lambda1 = lambda1, adaptive_filter = adaptive_filter)
 # Train the model
 OutputTraining = model.fit(X_train, y_train)
 # Test the model
@@ -97,7 +97,7 @@ print("NDEI:", NDEI)
 MAE = mean_absolute_error(y_test, y_pred1)
 print("MAE:", MAE)
 # Compute the number of final rules
-Rules = n_clusters
+Rules = rules
 print("Rules:", Rules)
 
 # Plot the graphic
@@ -114,14 +114,7 @@ plt.show()
 
 # Show the rules
 
-print(f"\n\nRules for {Model}:\n")
-
-for i in model.parameters.index:
-    rule = f'{i+1}'
-    for j in range(model.parameters.loc[i,'Center'].shape[0]):
-        rule += f" & {model.parameters.loc[i,'Center'][j,0]:.2f} $\pm$ {model.parameters.loc[i,'sigma'][j,0]:.2f}"
-    rule += f" & ({model.parameters.loc[i,'tangent'][0]:.2f},{model.parameters.loc[i,'tangent'][1]:.2f})"
-    print(rule)
+model.show_rules()
 
 # -----------------------------------------------------------------------------
 # NTSK-wRLS
@@ -130,12 +123,12 @@ for i in model.parameters.index:
 Model = "NTSK-wRLS"
 
 # Set hyperparameters range
-n_clusters = 4
-RLS_option = 2
+rules = 4
+adaptive_filter = "wRLS"
 
 
 # Initialize the model
-model = NTSK(n_clusters = n_clusters, RLS_option = RLS_option)
+model = NTSK(rules = rules, adaptive_filter = adaptive_filter)
 # Train the model
 OutputTraining = model.fit(X_train, y_train)
 # Test the model
@@ -152,7 +145,7 @@ print("NDEI:", NDEI)
 MAE = mean_absolute_error(y_test, y_pred1)
 print("MAE:", MAE)
 # Compute the number of final rules
-Rules = n_clusters
+Rules = rules
 print("Rules:", Rules)
 
 # Plot the graphic
@@ -169,11 +162,4 @@ plt.show()
 
 # Show the rules
 
-print(f"\n\nRules for {Model}:\n")
-
-for i in model.parameters.index:
-    rule = f'{i+1}'
-    for j in range(model.parameters.loc[i,'Center'].shape[0]):
-        rule += f" & {model.parameters.loc[i,'Center'][j,0]:.2f} $\pm$ {model.parameters.loc[i,'sigma'][j,0]:.2f}"
-    rule += f" & ({model.parameters.loc[i,'tangent'][0]:.2f},{model.parameters.loc[i,'tangent'][1]:.2f})"
-    print(rule)
+model.show_rules()

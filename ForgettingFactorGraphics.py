@@ -19,7 +19,7 @@ from sklearn.preprocessing import MinMaxScaler
 
 # Including to the path another fold
 import sys
-sys.path.append(r'ProposedModels')
+sys.path.append(r'ProposedModel')
 
 # Import models
 from NTSK import NTSK
@@ -77,7 +77,7 @@ Model = "NTSK-RLS"
 
 # Set hyperparameters range
 l_lambda1 = np.arange(0.8,1,0.01)
-RLS_option = 1
+adaptive_filter = "RLS"
 
 simul = 0
 lambdaRLS1 = np.array([])
@@ -85,7 +85,7 @@ rmseRLS1 = np.array([])
 for lambda1 in l_lambda1:
         
     # Initialize the model
-    model = NTSK(n_clusters = 1, lambda1 = lambda1, RLS_option = RLS_option)
+    model = NTSK(rules = 1, lambda1 = lambda1, adaptive_filter = adaptive_filter)
     # Train the model
     OutputTraining = model.fit(X_train, y_train)
     # Test the model
@@ -169,7 +169,7 @@ Model = "NTSK-RLS"
 
 # Set hyperparameters range
 l_lambda1 = np.arange(0.8,1,0.01)
-RLS_option = 1
+adaptive_filter = "RLS"
 
 simul = 0
 lambdaRLS2 = np.array([])
@@ -177,7 +177,7 @@ rmseRLS2 = np.array([])
 for lambda1 in l_lambda1:
         
     # Initialize the model
-    model = NTSK(n_clusters = 1, lambda1 = lambda1, RLS_option = RLS_option)
+    model = NTSK(rules = 1, lambda1 = lambda1, adaptive_filter = adaptive_filter)
     # Train the model
     OutputTraining = model.fit(X_train, y_train)
     # Test the model
@@ -263,7 +263,7 @@ Model = "NTSK-RLS"
 
 # Set hyperparameters range
 l_lambda1 = np.arange(0.8,1,0.01)
-RLS_option = 1
+adaptive_filter = "RLS"
 
 simul = 0
 lambdaRLS3 = np.array([])
@@ -271,7 +271,7 @@ rmseRLS3 = np.array([])
 for lambda1 in l_lambda1:
         
     # Initialize the model
-    model = NTSK(n_clusters = 1, lambda1 = lambda1, RLS_option = RLS_option)
+    model = NTSK(rules = 1, lambda1 = lambda1, adaptive_filter = adaptive_filter)
     # Train the model
     OutputTraining = model.fit(X_train, y_train)
     # Test the model

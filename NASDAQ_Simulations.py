@@ -18,7 +18,7 @@ from sklearn.preprocessing import MinMaxScaler
 
 # Including to the path another fold
 import sys
-sys.path.append(r'ProposedModels')
+sys.path.append(r'ProposedModel')
 
 # Import models
 from NTSK import NTSK
@@ -74,13 +74,13 @@ X_test = scaler.transform(X_test)
 Model = "NTSK-RLS"
 
 # Set hyperparameters range
-n_clusters = 6
+rules = 6
 lambda1 = 0.99
-RLS_option = 1
+adaptive_filter = "RLS"
 
 
 # Initialize the model
-model = NTSK(n_clusters = n_clusters, lambda1 = lambda1, RLS_option = RLS_option)
+model = NTSK(rules = rules, lambda1 = lambda1, adaptive_filter = adaptive_filter)
 # Train the model
 OutputTraining = model.fit(X_train, y_train)
 # Test the model
@@ -97,7 +97,7 @@ print("NDEI:", NDEI)
 MAE = mean_absolute_error(y_test, y_pred1)
 print("MAE:", MAE)
 # Compute the number of final rules
-Rules = n_clusters
+Rules = rules
 print("Rules:", Rules)
 
 # Plot the graphic
@@ -119,12 +119,12 @@ plt.show()
 Model = "NTSK-wRLS"
 
 # Set hyperparameters range
-n_clusters = 7
-RLS_option = 2
+rules = 7
+adaptive_filter = "wRLS"
 
 
 # Initialize the model
-model = NTSK(n_clusters = n_clusters, RLS_option = RLS_option)
+model = NTSK(rules = rules, adaptive_filter = adaptive_filter)
 # Train the model
 OutputTraining = model.fit(X_train, y_train)
 # Test the model
@@ -141,7 +141,7 @@ print("NDEI:", NDEI)
 MAE = mean_absolute_error(y_test, y_pred1)
 print("MAE:", MAE)
 # Compute the number of final rules
-Rules = n_clusters
+Rules = rules
 print("Rules:", Rules)
 
 # Plot the graphic
